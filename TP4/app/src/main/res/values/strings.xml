@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">TP4</string>
+    <string name="textview">TextView</string>
+    <string name="stop">Stop</string>
+    <string name="start">Start</string>
+    <string name="todo">TODO</string>
+</resources>
