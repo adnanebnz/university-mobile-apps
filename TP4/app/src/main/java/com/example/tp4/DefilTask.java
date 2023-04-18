@@ -8,42 +8,42 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.widget.ImageView;
 
-public class DefilTask extends AsyncTask<Void,String,Void> {
+public class DefilTask extends AsyncTask<Void, String, Void> {
+    int random = 0;
+    String[] imagesArray = {"java", "android", "kotlin"};
     private Context ctx;
-    int random=0;
-    String[] imagesArray ={"java","android","kotlin"};
-    DefilTask(Context ctx){
+
+    DefilTask(Context ctx) {
         this.ctx = ctx;
     }
-
 
 
     @Override
     protected Void doInBackground(Void... voids) {
         HandlerThread thread = new HandlerThread("worker");
         thread.start();
-        Handler handler = new Handler(thread.getLooper()) ;
-        handler.post(new Runnable(){
+        Handler handler = new Handler(thread.getLooper());
+        handler.post(new Runnable() {
             @Override
             public void run() {
-               random = (int) Math.floor(Math.random()*3);
+                random = (int) Math.floor(Math.random() * 3);
             }
         });
-                System.out.println(random);
-                publishProgress(imagesArray[random]);
-
-
+        System.out.println(random);
+        publishProgress(imagesArray[random]);
 
         return null;
     }
+
     @Override
     protected void onProgressUpdate(String... image) {
         super.onProgressUpdate(image);
-        int idImgDraw = ((Activity) ctx).getResources().getIdentifier(image[0], "drawable",((Activity) ctx).getPackageName());
-        Drawable monImgDraw = ((Activity) ctx).getResources().getDrawable(idImgDraw) ;
+        int idImgDraw = ((Activity) ctx).getResources().getIdentifier(image[0], "drawable", ((Activity) ctx).getPackageName());
+        Drawable monImgDraw = ((Activity) ctx).getResources().getDrawable(idImgDraw);
         ImageView monImgView = (ImageView) ((Activity) ctx).findViewById(R.id.imageView);
         monImgView.setImageDrawable(monImgDraw);
     }
+
     @Override
     protected void onPreExecute() {
 
