@@ -6,7 +6,8 @@
     <string name="task_deadline">Deadline</string>
     <string name="bout_add_task">Ajouter une nouvelle tâche</string>
     <string name="bout_view_task">Afficher les tâches </string>
- <string name="bout_delete_task">réalisées</string>
+    <string name="bout_delete_task">réalisées</string>
+    <string name="jj_mm_yyyy">jj/mm/yyyy</string>
     <string-array name="priorite">
         <item> Faible </item>
         <item> Moyenne </item>

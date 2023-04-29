@@ -29,8 +29,8 @@ public class GestionBDD {
         //TODO MY SOLUTION HERE
         ligne.put(BDDHelper.NomTask, nom.toString());
         ligne.put(BDDHelper.PrioTask, prio);
-        ligne.put(BDDHelper.DeadTask, date.toString());
         ligne.put(BDDHelper.EtatAvancementTask, etat);
+        ligne.put(BDDHelper.DeadTask, date.toString());
         //TODO END OF SOLUITON
 
         long id = bdd.insert(BDDHelper.NOM_TABLE, null, ligne);
@@ -56,7 +56,7 @@ public class GestionBDD {
 
         //TODO MY SOLUTION HERE
         SQLiteDatabase bdd = instHelper.getWritableDatabase();
-        String[] colonnes = {BDDHelper.NomTask, BDDHelper.PrioTask, BDDHelper.DeadTask, BDDHelper.EtatAvancementTask};
+        String[] colonnes = {"_id", BDDHelper.NomTask, BDDHelper.PrioTask, BDDHelper.EtatAvancementTask, BDDHelper.DeadTask};
         Cursor curseur = bdd.query(BDDHelper.NOM_TABLE, colonnes, null, null, null, null, null);
         return curseur;
         //TODO END OF SOLUITON

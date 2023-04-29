@@ -27,17 +27,22 @@ public class MainActivity extends AppCompatActivity {
         bout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cursor cur = getDataFromBDD();
-                displayGotData(cur);
+                try {
+                    Cursor cur = getDataFromBDD();
+                    displayGotData(cur);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
             }
         });
     }
     // Intérroger la BDD de l'application initiale (application1) en passant par son Content
     //Provider (il faut appeler la méthode query à partir du contentResolver en spécifiant l’URI de la table). L’URI doit spécifier l’authority, le nom de la BDD ainsi que le nom de la table.
     private Cursor getDataFromBDD() {
-        //TODO MY SOLUTION BUT ITS NOT WORKING
-        Uri uri = Uri.parse("content://com.example.tp6/MaBDD/Planning");
-        String[] projection = {"_id", "NomTask","PrioTask","DeadTask","EtatAvancementTask"};
+        //TODO MY SOLUTION
+        Uri uri = Uri.parse("content://com.tp6.provider/MaBDD/Planning");
+        String[] projection = {"_id", "Nom","Priorite","Deadline","Etat"};
         Cursor curseur = getContentResolver().query(
                 uri, projection, null, null, null);
         return curseur;

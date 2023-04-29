@@ -45,7 +45,7 @@ public class TasksContentProvider extends ContentProvider {
         }
         // Récupérer la base de données (en passant par son chemin) puis appeler la méthode query qui est locale à la BDD
         //TODO MY SOLUTION
-        bdd = SQLiteDatabase.openDatabase(getContext().getFilesDir().getPath() + "/" + nomBDD, null, SQLiteDatabase.OPEN_READWRITE);
+        bdd = SQLiteDatabase.openDatabase("/data/user/0/com.example.tp6/databases/MaBDD", null, SQLiteDatabase.OPEN_READWRITE);
         Cursor curseur = bdd.query(nomTable, projection, selection, selectionArgs, null, null, sortOrder);
         return curseur;
         //TODO MY SOLUTION END

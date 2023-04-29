@@ -104,24 +104,28 @@ public class MainActivity extends AppCompatActivity {
         viewBout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Appelet la méthode obtenirTache ensuite récupérer les lignes du cursseur retourné
-                Cursor cur = control.obtenirTache();
-                String[] lignesLues = new String[cur.getCount()];
-                if (cur.getCount() > 0) {
-                    for (int i = 0; i < cur.getCount(); i++) {
-                        cur.moveToNext();
-                        int id = cur.getInt(0);
-                        String nom = cur.getString(1);
-                        String prio = cur.getString(2);
-                        String etat = cur.getString(3);
-                        String dead = cur.getString(4);
-                        lignesLues[i] = id + "---" + nom + "---" + prio + "---" + etat + "---" + dead + "\n";
+                try {
+                    // Appelet la méthode obtenirTache ensuite récupérer les lignes du cursseur retourné
+                    Cursor cur = control.obtenirTache();
+                    String[] lignesLues = new String[cur.getCount()];
+                    if (cur.getCount() > 0) {
+                        for (int i = 0; i < cur.getCount(); i++) {
+                            cur.moveToNext();
+                            int id = cur.getInt(0);
+                            String nom = cur.getString(1);
+                            String prio = cur.getString(2);
+                            String etat = cur.getString(3);
+                            String dead = cur.getString(4);
+                            lignesLues[i] = id + "---" + nom + "---" + prio + "---" + etat + "---" + dead + "\n";
+                        }
+                        cur.close(); // fermer le cursor
+                        // Afficher les lignes récupérées dans une ListView.
+                        ArrayAdapter<String> adapter = new
+                                ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, lignesLues);
+                        affichageLV.setAdapter(adapter);
                     }
-                    cur.close(); // fermer le cursor
-                    // Afficher les lignes récupérées dans une ListView.
-                    ArrayAdapter<String> adapter = new
-                            ArrayAdapter<String>(MainActivity.this, android.R.layout.simple_list_item_1, lignesLues);
-                    affichageLV.setAdapter(adapter);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
         });
