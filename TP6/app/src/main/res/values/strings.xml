@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SQLiteBDDApp</string>
+    <string name="task_name">Nom de la tâche </string>
+    <string name="task_prio">Priorité</string>
+    <string name="task_state">Etat avancement </string>
+    <string name="task_deadline">Deadline</string>
+    <string name="bout_add_task">Ajouter une nouvelle tâche</string>
+    <string name="bout_view_task">Afficher les tâches </string>
+ <string name="bout_delete_task">réalisées</string>
+    <string-array name="priorite">
+        <item> Faible </item>
+        <item> Moyenne </item>
+        <item> Elevée </item>
+    </string-array>
+    <string-array name="etat">
+        <item> Not yet </item>
+        <item> Partially done </item>
+        <item> Done </item>
+    </string-array>
+</resources>
