@@ -132,6 +132,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
@@ -180,8 +181,8 @@
 
         <ListView
             android:id="@+id/listView"
-            android:layout_width="367dp"
-            android:layout_height="322dp"
+            android:layout_width="wrap_content"
+            android:layout_height="349dp"
             android:layout_gravity="center"
             android:background="#CEF3F0"
             android:textColor="#009688"
