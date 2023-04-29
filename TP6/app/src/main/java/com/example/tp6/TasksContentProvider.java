@@ -23,6 +23,7 @@ public class TasksContentProvider extends ContentProvider {
         // Récupérer les données à partir de l'URI sachant que uri.getPathSegments()).toString()= [MaBDD,Planning]
         String nomBDD = uri.getPathSegments().get(0);
         String nomTable = uri.getPathSegments().get(1);
+
         // Vérifier que la demande ne concerne pas une ligne particulière de la table c'est à dire une uri de type id_based (demander la ligne ayant un identifiant spécifié dans l'uri). Si c'est le cas, il faut récupérer les valeurs pour selection et selectionArgs à partir de l'URI passée en paramètre.
 
         String id = null;
@@ -43,7 +44,11 @@ public class TasksContentProvider extends ContentProvider {
             }
         }
         // Récupérer la base de données (en passant par son chemin) puis appeler la méthode query qui est locale à la BDD
-        return null;    //????????
+        //TODO MY SOLUTION
+        bdd = SQLiteDatabase.openDatabase(getContext().getFilesDir().getPath() + "/" + nomBDD, null, SQLiteDatabase.OPEN_READWRITE);
+        Cursor curseur = bdd.query(nomTable, projection, selection, selectionArgs, null, null, sortOrder);
+        return curseur;
+        //TODO MY SOLUTION END
     }
 
     /////////////////////////////////////

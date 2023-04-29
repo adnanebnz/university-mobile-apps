@@ -86,8 +86,7 @@ public class MainActivity extends AppCompatActivity {
                     });
                     // Deuxième étape appeler la méthode insert (il est nécessaire de convertir deadl en un objet Date):
                     try {
-                        Date deadDateFormat = new
-                                SimpleDateFormat("dd/mm/yyyy").parse(deadl.toString());
+                        Date deadDateFormat = new SimpleDateFormat("dd/mm/yyyy").parse(deadl.toString());
                         long id = control.insererTache(taskName, prio, deadDateFormat,
                                 etatAvanc);
                         Toast.makeText(MainActivity.this, "L'id de la tâche est = " + id, Toast.LENGTH_LONG).show();
