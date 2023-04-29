@@ -35,17 +35,12 @@ public class MainActivity extends AppCompatActivity {
     // Intérroger la BDD de l'application initiale (application1) en passant par son Content
     //Provider (il faut appeler la méthode query à partir du contentResolver en spécifiant l’URI de la table). L’URI doit spécifier l’authority, le nom de la BDD ainsi que le nom de la table.
     private Cursor getDataFromBDD() {
-        //TODO MY SOLUTION BUT ITS NOT WORKING I DONT KNOW HOW TO GET THE URI FROM THE OTHER APP
-
+        //TODO MY SOLUTION BUT ITS NOT WORKING
         Uri uri = Uri.parse("content://com.example.tp6/MaBDD/Planning");
         String[] projection = {"_id", "NomTask","PrioTask","DeadTask","EtatAvancementTask"};
-        String selection = null;
-        String[] selectionArgs = null;
-        String sortOrder = null;
         Cursor curseur = getContentResolver().query(
-                uri, projection, selection, selectionArgs, sortOrder);
+                uri, projection, null, null, null);
         return curseur;
-
         //TODO MY SOLUTION END
     }
     // Afficher les données sur ListView. On s’intéresse uniquement à l’identifiant et au nom de chaque tâche
