@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -42,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         Spinner prioSpinn = (Spinner) findViewById(R.id.spinner);
         Spinner etatSpinn = (Spinner) findViewById(R.id.spinner2);
         // Récupérer les ressources String-Array de type TypesArray qui sont déclarées dans le fichier strings.xml
-        //etatVals = getResources().obtainTypedArray(R.array.etat);
-        //prioVals = getResources().obtainTypedArray(R.array.priorite);
+        etatVals = getResources().obtainTypedArray(R.array.etat);
+        prioVals = getResources().obtainTypedArray(R.array.priorite);
         // Créer une instance du gestionnaire de la BDD (classe à partir de laquelle on peut manipuler la BDD)
         GestionBDD control = new GestionBDD(MainActivity.this);
         // Ajouter les Listeners aux boutons
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                     // Récupérer la date d'échéance de la tâche
                     deadl = dateEditText.getText();
                     // Récupérer l'état d'avancement
-                    //etatAvanc = etatVals.getString(etatSpinn.getSelectedItemPosition());
+                    etatAvanc = etatVals.getString(etatSpinn.getSelectedItemPosition());
                     etatSpinn.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                         @Override
                         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -89,14 +90,14 @@ public class MainActivity extends AppCompatActivity {
                                 SimpleDateFormat("dd/mm/yyyy").parse(deadl.toString());
                         long id = control.insererTache(taskName, prio, deadDateFormat,
                                 etatAvanc);
-                        // Toast.makeText(MainActivity.this, "L'id de la tâche est = " + id,Toast.LENGTH_LONG).show();
+                        Toast.makeText(MainActivity.this, "L'id de la tâche est = " + id, Toast.LENGTH_LONG).show();
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
                 }
                 // Si il manque des informations concernant la tâche à ajouter dans la BDD
                 else {
-                    //Toast.makeText(MainActivity.this, "Veuillez saisir les champs manquants", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Veuillez saisir les champs manquants", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                         String prio = cur.getString(2);
                         String etat = cur.getString(3);
                         String dead = cur.getString(4);
-                        //lignesLues[i] = id + "---" + nom + "---" + prio + "---" + etat + "---" + dead + "\n";
+                        lignesLues[i] = id + "---" + nom + "---" + prio + "---" + etat + "---" + dead + "\n";
                     }
                     cur.close(); // fermer le cursor
                     // Afficher les lignes récupérées dans une ListView.
